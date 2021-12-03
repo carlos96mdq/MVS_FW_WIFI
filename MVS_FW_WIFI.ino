@@ -212,7 +212,7 @@ void loop() {
         //************ COMIENZO TX ************//
   
         for (int i = 0 ; i < measureQuantity ; i++) {       // Iteración para cada medición
-           initInterrupt();                                  // Se pone acá para que ande, después se verá por qué. NO BORRAR
+           initInterrupt();                                  // NO BORRAR
            startTime = (overflowCount << 16) + TCNT1;        // Almaceno la cantidad de ticks del contador, esta manera de hacerlo es para obtener un valor preciso, teniendo en cuenta la cantidad de overflows y los ticks actuales del contador
            digitalWrite(CS, HIGH);                           // Activo el pulso modulante
   
@@ -250,7 +250,7 @@ void loop() {
           }
       
           digitalWrite(CS, LOW);  // Dejo de transmitir
-          delay(2000);            // Para mi el bug se arregla con esto. Creo que cuando volvemos a medir, si justo quedó un rebote en el canal el circuito lo agarra antes de dejar de transmitir y ahí entra en un loop y cagó
+          delay(2000);            // Cuando volvemos a medir, si justo quedó un rebote en el canal el circuito lo agarra antes de dejar de transmitir y ahí entra en un loop
         }
 
         //************ CALCULOS ************//
